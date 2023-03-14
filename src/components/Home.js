@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 
 
@@ -10,15 +10,16 @@ border: 1px solid black;
 padding: 100px;
 
 
-.pizza {
+#order-pizza {
     border: 1px solid black;
     padding: 5px 20px;
     text-decoration: none;
     color: black;
+    background: white;
     
 
 }
-.pizza:hover {
+#order-pizza:hover {
     background-color: black;
     color: white;
 }
@@ -80,13 +81,20 @@ const TimeFee = styled.div`
 `;
 
 const Home = () => {
-
+    const history = useHistory()
+    const handleClick = e => {
+      console.log(e.currentTarget.id);
+      history.push('/pizza')
+    };
 
     return (
         <div className="home">    
         <Center className="pizzabody">
                 <h1> Your favorite food, delivered While coding</h1> 
-                <nav><Link id="order-pizza" className="pizza" to='/pizza'>Pizza?</Link> </nav> 
+                <Link to='/pizza'>
+                <button id="order-pizza"
+                onClick={handleClick}>Pizza?</button> 
+                 </Link> 
                  
         </Center>
         <Delivery>
