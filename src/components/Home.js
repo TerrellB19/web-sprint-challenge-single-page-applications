@@ -90,7 +90,7 @@ const Home = () => {
         <div className="home">    
         <Center className="pizzabody">
                 <h1> Your favorite food, delivered While coding</h1> 
-                <nav><Link id="order-pizza" className="pizza" onClick={handleClick}>Pizza?</Link> </nav> 
+                <nav><Link id="order-pizza" className="pizza" to='/pizza' onClick={handleClick}>Pizza?</Link> </nav> 
                  
         </Center>
         <Delivery>
