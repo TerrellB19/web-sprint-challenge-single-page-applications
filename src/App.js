@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   customer: yup
   .string()
   .required('customer is required')
-  .min(3, 'customer name needs to be 6 chars min'),
+  .min(3, 'name must be at least 2 characters'),
   size: yup
   .string()
   .oneOf(['1', '2', '3'], 'you must choose a size'),
@@ -161,17 +161,17 @@ const submit = e => {
 
       <Route path="/pizza">
         <Form 
-        form={formValues} 
-        disabled={disabled} 
-        change={change} 
-        errors={errors} 
-        submit={submit}/> 
+          form={formValues} 
+          disabled={disabled} 
+          change={change} 
+          errors={errors} 
+          submit={submit}/> 
         </Route>
       <Route path="/confirmation">
-        <Confirmation/> 
+          <Confirmation/> 
         </Route>
       <Route path="/help">
-        <Help/> 
+          <Help/> 
         </Route>
     </Switch>
     </BrowserRouter>
