@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import * as yup from 'yup';
 import Home from "./components/Home";
@@ -154,12 +154,12 @@ const submit = e => {
                 <div><Link className="help" to='help'>Help</Link></div>    
             </nav>      
     </Wrapper>
-    <Routes>
-      <Route path="/" element={<Home/>}/>
+    <Switch>
+      <Route exact path="/" element={<Home/>}/>
       <Route path="pizza" element={<Form form={formValues} disabled={disabled} change={change} errors={errors} submit={submit}/>}/>
       <Route path="/confirmation" element={<Confirmation />}/>
       <Route path="help" element={<Help />}/>
-    </Routes>
+    </Switch>
     </BrowserRouter>
   );
 };
