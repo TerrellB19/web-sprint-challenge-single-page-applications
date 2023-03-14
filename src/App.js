@@ -155,10 +155,24 @@ const submit = e => {
             </nav>      
     </Wrapper>
     <Switch>
-      <Route exact path="/" element={<Home/>}/>
-      <Route path="pizza" element={<Form form={formValues} disabled={disabled} change={change} errors={errors} submit={submit}/>}/>
-      <Route path="/confirmation" element={<Confirmation />}/>
-      <Route path="help" element={<Help />}/>
+      <Route exact path="/" > 
+      <Home/> 
+      </Route>
+
+      <Route path="/pizza">
+        <Form 
+        form={formValues} 
+        disabled={disabled} 
+        change={change} 
+        errors={errors} 
+        submit={submit}/> 
+        </Route>
+      <Route path="/confirmation">
+        <Confirmation/> 
+        </Route>
+      <Route path="/help">
+        <Help/> 
+        </Route>
     </Switch>
     </BrowserRouter>
   );
