@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import * as yup from 'yup';
 import Home from "./components/Home";
-import Form from "./components/Form";
+import Pizza from "./components/Pizza";
 import Confirmation from "./components/confirmation";
 import Help from "./components/help";
 import styled from "styled-components";
@@ -11,7 +11,7 @@ import styled from "styled-components";
 const schema = yup.object().shape({
   customer: yup
   .string()
-  .required('customer is required')
+  .required('name is required')
   .min(3, 'name must be at least 2 characters'),
   size: yup
   .string()
@@ -95,15 +95,21 @@ const initialFormErrors = {
   size: "",
   sauce: ""
 }
-
+const initialOrders = []
 
 const App = () => {
+  const [orders, setOrders] = useState(initialOrders)
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
 
+  function clearOrders() { 
+    setOrders(initialOrders)
+  }
+
   const setFormErrors = (name, value) => {
-    yup.reach(schema, name).validate(value)
+    yup.reach(schema, name)
+    .validate(value)
     .then(() => setErrors({ ...errors, [name]: '' }))
     .catch(err => setErrors({ ...errors, [name]: err.errors[0] }))
   }
@@ -114,9 +120,17 @@ const App = () => {
     setFormErrors(name, valueToUse)
     setFormValues({ ...formValues, [name]: valueToUse })
 }
-const submit = e => {
-  e.preventDefault()
-  const newOrder = {
+
+const postOrder = newOrder => {
+  axios.post('https://reqres.in/api/orders', newOrder)
+  .then(({data}) => {
+    setOrders([...orders, data])
+  })
+  .catch(err => console.error(err))
+  .finally(() => (setFormValues(initialFormValues)))
+}
+const submit = () => {
+    const newOrder = {
     customer: formValues.customer,
     size: formValues.size,
     sauce: formValues.sauce,
@@ -132,12 +146,10 @@ const submit = e => {
     threeCheese: formValues.threeCheese,
     special: formValues.special
   }
-  axios.post('https://reqres.in/api/orders', newOrder)
-  .then(res => {
-    setFormValues(initialFormValues)
-  })
-  .catch(err => console.error(err))
+  setFormValues(initialFormValues)
+  postOrder(newOrder)
 }
+
   useEffect(() => {
     schema.isValid(formValues).then(valid => setDisabled(!valid))
   }, [formValues])
@@ -160,7 +172,7 @@ const submit = e => {
       </Route>
 
       <Route path="/pizza">
-        <Form 
+        <Pizza 
           form={formValues} 
           disabled={disabled} 
           change={change} 

@@ -81,7 +81,7 @@ form div{
 }
 `;
 
-const Form = (props) => {
+const Pizza = (props) => {
     const { form, disabled, change, errors, submit } = props
     return (
         <Wrapper id="pizza-form">
@@ -231,4 +231,4 @@ const Form = (props) => {
     )
 }
 
-export default Form;
+export default Pizza;
