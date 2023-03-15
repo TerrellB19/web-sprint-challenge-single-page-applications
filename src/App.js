@@ -103,10 +103,6 @@ const App = () => {
   const [errors, setErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
 
-  function clearOrders() { 
-    setOrders(initialOrders)
-  }
-
   const setFormErrors = (name, value) => {
     yup.reach(schema, name)
     .validate(value)
@@ -121,15 +117,16 @@ const App = () => {
     setFormValues({ ...formValues, [name]: valueToUse })
 }
 
-const postOrder = newOrder => {
+const postNewOrder = newOrder => {
   axios.post('https://reqres.in/api/orders', newOrder)
-  .then(({data}) => {
-    setOrders([...orders, data])
+  .then(res => {
+    console.log(res.data)
+    setOrders([...orders, res.data])
   })
   .catch(err => console.error(err))
   .finally(() => (setFormValues(initialFormValues)))
 }
-const submit = () => {
+const submitOrder = () => {
     const newOrder = {
     customer: formValues.customer,
     size: formValues.size,
@@ -146,8 +143,8 @@ const submit = () => {
     threeCheese: formValues.threeCheese,
     special: formValues.special
   }
-  setFormValues(initialFormValues)
-  postOrder(newOrder)
+  // setFormValues(initialFormValues)
+  postNewOrder(newOrder)
 }
 
   useEffect(() => {
@@ -159,7 +156,7 @@ const submit = () => {
     <BrowserRouter>
     <Wrapper className="pizzatop">
             <div>
-                <h2>LAMBDA EATS</h2>
+                <h2>BLOOMTECH EATS</h2>
             </div>
             <nav>
                 <div><Link className="home" to='/'>Home</Link></div>
@@ -177,10 +174,10 @@ const submit = () => {
           disabled={disabled} 
           change={change} 
           errors={errors} 
-          submit={submit}/> 
+          submit={submitOrder}/> 
         </Route>
       <Route path="/confirmation">
-          <Confirmation/> 
+          <Confirmation orders={orders}/> 
         </Route>
       <Route path="/help">
           <Help/> 

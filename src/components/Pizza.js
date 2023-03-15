@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const Wrapper = styled.div`
 display: flex;
@@ -83,8 +83,22 @@ form div{
 
 const Pizza = (props) => {
     const { form, disabled, change, errors, submit } = props
+
+    const history = useHistory()
+    const routeToconfirm = () => {
+        history.push('/confirmation')
+    }
+
+const onSubmit = evt => {
+    evt.preventDefault()
+    submit()
+    routeToconfirm()
+    
+
+}
+
     return (
-        <Wrapper id="pizza-form">
+        <Wrapper>
             <div>
                 <h3>Build Your Own Pizza</h3>
                 <div className="imgcontainer">
@@ -94,7 +108,11 @@ const Pizza = (props) => {
             </div>
             <div>
             <h2>Build Your Own Pizza</h2>
-            <form onSubmit={submit}>
+            <form 
+                id="pizza-form" 
+                className="pizza-form" 
+                onSubmit={onSubmit}
+            >
                 <label>
                 <div className="formHeader">
                     <h2>Name:</h2>
@@ -131,79 +149,120 @@ const Pizza = (props) => {
                     <div>{errors.sauce}</div>
                     
                     </div>
-                        <input className="redsauce" onChange={change} type='radio' checked={form.sauce === 'original red'} name="sauce" value='original red'/>Original Red
+                        <input 
+                            className="redsauce" 
+                            onChange={change} 
+                            type='radio' 
+                            checked={form.sauce === 'original red'} 
+                            name="sauce" 
+                            value='original red'/>Original Red
                         <br />
-                        <input onChange={change} type='radio' checked={form.sauce === 'garlic ranch'} name="sauce" value='garlic ranch'/>Garlic Ranch
+                        <input 
+                            onChange={change} 
+                            type='radio' 
+                            checked={form.sauce === 'garlic ranch'} 
+                            name="sauce" 
+                            value='garlic ranch'/>Garlic Ranch
                         <br />
-                        <input onChange={change} type='radio' checked={form.sauce === 'bbq sauce'} name="sauce" value='bbq sauce'/>BBQ Sauce
+                        <input 
+                            onChange={change} 
+                            type='radio' 
+                            checked={form.sauce === 'bbq sauce'} 
+                            name="sauce" 
+                            value='bbq sauce'/>BBQ Sauce
                         <br />
-                        <input onChange={change} type='radio' checked={form.sauce === 'spinach alfredo'} name="sauce" value='spinach alfredo'/>Spinach Alfredo
+                        <input 
+                            onChange={change} 
+                            type='radio' 
+                            checked={form.sauce === 'spinach alfredo'} 
+                            name="sauce" 
+                            value='spinach alfredo'/>Spinach Alfredo
                     </label>
                     <br />
                     <label>
                     <div className="formHeader">
-                    <h2>Add Toppings</h2>
-                    <p>Choose up to 10</p>
+                        <h2>Add Toppings</h2>
+                        <p>Choose up to 10</p>
                     </div>                  
                     <div>
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.pepperoni}  
-                    onChange={change}
-                    name="pepperoni" />Pepperoni</div>
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.pineapple}  
-                    onChange={change}
-                    name="pineapple"/>Pineapple</div> 
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.pepperoni}  
+                        onChange={change}
+                        name="pepperoni" />Pepperoni
+                    </div>
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.pineapple}  
+                        onChange={change}
+                        name="pineapple"/>Pineapple
+                    </div> 
                     </div>
                     <div>
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.sausage}  
-                    onChange={change}
-                    name="sausage"/>Sausage</div>
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.blackOlives}  
-                    onChange={change}
-                    name="blackOlives"/>Black Olives</div>
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.sausage}  
+                        onChange={change}
+                        name="sausage"/>Sausage
+                    </div>
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.blackOlives}  
+                        onChange={change}
+                        name="blackOlives"/>Black Olives
+                    </div>
                     </div>
                     <div>
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.canadianBacon}  
-                    onChange={change}
-                    name="canadianBacon"/>Canadian Bacon</div> 
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.roastedGarlic}  
-                    onChange={change}
-                    name="roastedGarlic"/>Roasted Garlic</div>
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.canadianBacon}  
+                        onChange={change}
+                        name="canadianBacon"/>Canadian Bacon
+                    </div> 
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.roastedGarlic}  
+                        onChange={change}
+                        name="roastedGarlic"/>Roasted Garlic
+                    </div>
                     </div>
                     <div>
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.spicyItalianSausage}
-                    onChange={change}  
-                    name="spicyItalianSausage"/>Spicy Italian Sausage</div> 
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.artichokeHearts}  
-                    onChange={change}
-                    name="artichokeHearts"/>Artichoke Hearts</div>
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.spicyItalianSausage}
+                        onChange={change}  
+                        name="spicyItalianSausage"/>Spicy Italian Sausage
+                    </div> 
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.artichokeHearts}  
+                        onChange={change}
+                        name="artichokeHearts"/>Artichoke Hearts
+                    </div>
                     </div>
                     <div>
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.greenPepper}  
-                    onChange={change}
-                    name="greenPepper"/>Green Pepper</div>   
-                    <div className="checkbox"><input
-                    type='checkbox'
-                    checked={form.threeCheese}  
-                    onChange={change}
-                    name="threeCheese"/>Three Cheese</div>
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.greenPepper}  
+                        onChange={change}
+                        name="greenPepper"/>Green Pepper
+                    </div>   
+                    <div className="checkbox">
+                    <input
+                        type='checkbox'
+                        checked={form.threeCheese}  
+                        onChange={change}
+                        name="threeCheese"/>Three Cheese
+                    </div>
                     </div> 
                     </label>
                     <label>
@@ -211,17 +270,27 @@ const Pizza = (props) => {
                         <h2>Special Instructions</h2>
                         </div>
                         <div>
-                            <input id="special-text" className="specialInstructions" type='text' name="specialInstructions" placeholder="Anything else you'd like to add?"
+                            <input 
+                            id="special-text" 
+                            className="specialInstructions" 
+                            type='text' 
+                            name="specialInstructions" 
+                            placeholder="Anything else you'd like to add?"
                             value={form.special}
                             onChange={change}
                             />
                         </div>
                         <div className="order">
                             <input type='number'/>
-                            <Link className="buttonlink" to='/confirmation'><button disabled={disabled} id="order-button" type="submit">
+                                <button 
+                                disabled={disabled} 
+                                id="order-button">
                                 <div>Add to Order</div>
-                                <div className="price">$17.99</div>
-                            </button></Link>
+                                <div 
+                                className="price">
+                                    $17.99
+                                </div>
+                            </button>
                         </div>
                     </label>
                 
