@@ -25,6 +25,11 @@ describe('tests', () => {
         it('can navigate to the site', () => {
             cy.url().should('include', 'localhost');
         })
+        it ('can navigate to /pizza by clicking pizza button', () => {
+            cy.visit('http://localhost:3000/')
+            cy.get('#order-pizza').click()
+            cy.url().should('include', '/pizza')
+        })
         it('can type in the name text input', () => {
             customerInput()
             .should('have.value',  '')

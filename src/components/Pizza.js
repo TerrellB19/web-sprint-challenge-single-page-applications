@@ -135,7 +135,11 @@ const onSubmit = evt => {
                     
                 </div>
 
-                    <select value={form.size} onChange={change} id="size-dropdown" name="size">
+                    <select 
+                    value={form.size} 
+                    onChange={change} 
+                    id="size-dropdown" 
+                    name="size">
                         <option value=''>Select</option>
                         <option className="small" value='1'>Small</option>
                         <option value='2'>Medium</option>

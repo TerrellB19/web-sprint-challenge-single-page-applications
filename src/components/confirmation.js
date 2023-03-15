@@ -7,11 +7,12 @@ const Wrapper = styled.div`
 text-align: center;
 
 .header {
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     padding: 100px;
     background-image: url('https://www.happyspizza.com/wp-content/uploads/2023/03/Large-3-Topping.png');
     background-repeat: no-repeat;
-    background-position: right 0% bottom 60%;;
+    background-position: right 0% bottom 60%;
 }
 .greet {
     margin-top: 80px;
