@@ -35,7 +35,7 @@ const Home = () => {
     const history = useHistory()
     const handleClick = e => {
       console.log(e.currentTarget.id);
-      history.push('/pizza')
+      history.push("/pizza")
     };
 
     return (

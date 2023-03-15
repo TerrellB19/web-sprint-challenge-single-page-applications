@@ -153,8 +153,8 @@ const submitOrder = () => {
 
 
   return (
-    <BrowserRouter>
-    <Wrapper className="pizzatop">
+    <Wrapper>
+    <div className="pizzatop">
             <div>
                 <h2>BLOOMTECH EATS</h2>
             </div>
@@ -162,7 +162,7 @@ const submitOrder = () => {
                 <div><Link className="home" to='/'>Home</Link></div>
                 <div><Link className="help" to='help'>Help</Link></div>    
             </nav>      
-    </Wrapper>
+    </div>
     <Switch>
       <Route exact path="/" > 
       <Home/> 
@@ -183,7 +183,7 @@ const submitOrder = () => {
           <Help/> 
         </Route>
     </Switch>
-    </BrowserRouter>
+    </Wrapper>
   );
 };
 export default App;
