@@ -50,6 +50,8 @@ describe('tests', () => {
             checkPineapple().check().should('be.checked')
             checkSausage().check().should('be.checked')
             checkOlives().check().should('be.checked')
+            cy.get(`input[id="special-text"]`)
+            .type('Here are the special instructions')
             submitBtn().click()
         })
     })       

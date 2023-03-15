@@ -48,7 +48,7 @@ form div{
     flex-wrap: nowrap;
     width: 95vw;
 }
-.specialInstructions {
+#special-text {
     width: 60vw;
     height: 30px;
     margin: 1% 7%;
@@ -276,9 +276,8 @@ const onSubmit = evt => {
                         <div>
                             <input 
                             id="special-text" 
-                            className="specialInstructions" 
                             type='text' 
-                            name="specialInstructions" 
+                            name="special" 
                             placeholder="Anything else you'd like to add?"
                             value={form.special}
                             onChange={change}

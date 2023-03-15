@@ -23,6 +23,8 @@ text-align: center;
                     <div><p>Customer Name: {info.customer}</p></div>
                     <div><p>Size: {info.size}</p></div>
                     <div><p>Sauce: {info.sauce}</p></div>
+                    <div><p>Special Instructions:</p></div>
+                    <div><p>🖊️{info.special}🖊️</p></div>
                     <div>
                     <p>Toppings:</p>
                     <div>
